@@ -1,17 +1,82 @@
 ---
+// ここで設定した変数を下のHTMLで使います
+const siteTitle = "State / Action";
+const profile = {
+  major: "Information Science",
+  interests: ["Reinforcement Learning", "Logic Puzzles", "Long-distance Walking"]
+};
 
+// あなたが現在抱えているプロジェクトたち
+const tools = [
+  { id: "01", name: "RL Process Visualizer", desc: "強化学習の学習過程を可視化し、変数への理解を深める。", status: "In Progress" },
+  { id: "02", name: "Book Management Bot", desc: "読書を構造化し、次の『行動』をレコメンドするLINE Bot。", status: "Planning" },
+  { id: "03", name: "100km Walk Log", desc: "身体的な限界点と、その際の思考ログのアーカイブ。", status: "Concept" },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{siteTitle}</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --dim: #888;
+      --accent: #000;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Courier New", Courier, monospace; /* 技術者っぽい等幅フォント */
+      line-height: 1.8;
+      max-width: 700px;
+      margin: 100px auto;
+      padding: 0 40px;
+    }
+    h1 { font-size: 1.5rem; font-weight: normal; border-bottom: 1px solid #000; display: inline-block; }
+    .concept { margin: 60px 0; font-size: 0.9rem; }
+    .tool-list { list-style: none; padding: 0; }
+    .tool-item { margin-bottom: 30px; border-left: 2px solid #eee; padding-left: 20px; }
+    .tool-name { font-weight: bold; text-decoration: none; color: var(--text); }
+    .status { font-size: 0.7rem; background: #f0f0f0; padding: 2px 8px; margin-left: 10px; border-radius: 10px; }
+    footer { margin-top: 120px; font-size: 0.8rem; border-top: 1px solid #eee; padding-top: 20px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{siteTitle}</h1>
+  </header>
+
+  <main>
+    <section class="concept">
+      <p>数値と選択で、世界の解像度を少しだけ変えてみる。</p>
+      <p>ここは、生活をハックするための小さな試行錯誤を置く場所。</p>
+      <p>すべては、次の「状態」を面白くするための変数に過ぎない。</p>
+    </section>
+
+    <section>
+      <h2>[Index / Tools]</h2>
+      <ul class="tool-list">
+        {tools.map(tool => (
+          <li class="tool-item">
+            <div>
+              <span style="color: #ccc; margin-right: 10px;">{tool.id}</span>
+              <a href="#" class="tool-name">{tool.name}</a>
+              <span class="status">{tool.status}</span>
+            </div>
+            <p style="font-size: 0.85rem; color: #666; margin: 5px 0;">{tool.desc}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Author: Anonymous / {profile.major}</p>
+    <p>Interests: {profile.interests.join(" / ")}</p>
+    <p style="margin-top: 20px; color: #ccc;">&copy; 2026 State / Action. 試行錯誤のリソースとして、将来的に広告や支援窓口を置く可能性があります。</p>
+  </footer>
+</body>
 </html>
