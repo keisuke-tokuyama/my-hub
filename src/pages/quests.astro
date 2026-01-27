@@ -1,0 +1,188 @@
+---
+const siteTitle = "Quest Board";
+
+const activeQuests = [
+  {
+    id: "Q-01",
+    title: "IELTS 6.5への到達",
+    desc: "弱点（Writing / Speaking）を特定して、週次でスコア改善を検証する。",
+    tag: "Study",
+  },
+  {
+    id: "Q-02",
+    title: "50個のサービス量産",
+    desc: "小さく作って早く出す。週単位でアイデア→実装→公開の回転数を上げる。",
+    tag: "Build",
+  },
+  {
+    id: "Q-03",
+    title: "本拠地の防衛（メンテナンス）",
+    desc: "運用コストを下げる整備。バックアップ、更新、不要物の整理をルーチン化する。",
+    tag: "Maintain",
+  },
+];
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{siteTitle} | State / Action</title>
+    <style>
+      :root {
+        --bg: #ffffff;
+        --text: #1a1a1a;
+        --dim: #777;
+        --accent: #000;
+        --card: #fbfbfb;
+        --border: #ececec;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Courier New", Courier, monospace;
+        line-height: 1.8;
+        max-width: 980px;
+        margin: 90px auto;
+        padding: 0 40px;
+      }
+      header {
+        display: flex;
+        gap: 24px;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      h1 {
+        font-size: 1.5rem;
+        font-weight: normal;
+        border-bottom: 1px solid #000;
+        display: inline-block;
+        margin: 0;
+      }
+      .sub {
+        margin-top: 14px;
+        color: var(--dim);
+        font-size: 0.9rem;
+      }
+      .back {
+        text-decoration: none;
+        color: var(--text);
+        border-bottom: 1px solid #000;
+        padding-bottom: 2px;
+        white-space: nowrap;
+        font-size: 0.9rem;
+      }
+
+      .section-title {
+        margin-top: 60px;
+        font-size: 1rem;
+        font-weight: normal;
+      }
+
+      .board {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+      @media (max-width: 980px) {
+        .board { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 640px) {
+        body { padding: 0 20px; }
+        .board { grid-template-columns: 1fr; }
+        header { flex-direction: column; align-items: flex-start; }
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px 18px 16px;
+      }
+      .card-head {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .qid {
+        color: #bbb;
+        font-size: 0.85rem;
+        margin-right: 10px;
+      }
+      .title {
+        font-weight: bold;
+        font-size: 1rem;
+        margin: 0;
+        flex: 1;
+      }
+      .badge {
+        font-size: 0.7rem;
+        background: #f0f0f0;
+        border: 1px solid #e8e8e8;
+        padding: 2px 8px;
+        border-radius: 999px;
+        color: #333;
+      }
+      .desc {
+        margin: 0;
+        color: #555;
+        font-size: 0.9rem;
+      }
+      .meta {
+        margin-top: 14px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #999;
+        font-size: 0.8rem;
+        border-top: 1px dashed #e9e9e9;
+        padding-top: 10px;
+      }
+
+      footer {
+        margin-top: 90px;
+        font-size: 0.8rem;
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+        color: var(--dim);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>{siteTitle}</h1>
+        <p class="sub">今の自分が挑戦中のタスクを「クエスト」として掲示するボード。</p>
+      </div>
+      <a class="back" href="/">← トップへ戻る</a>
+    </header>
+
+    <main>
+      <h2 class="section-title">[現在進行中のクエスト]</h2>
+      <section class="board" aria-label="現在進行中のクエスト一覧">
+        {activeQuests.map((q) => (
+          <article class="card">
+            <div class="card-head">
+              <span class="qid">{q.id}</span>
+              <h3 class="title">{q.title}</h3>
+              <span class="badge">In Progress</span>
+            </div>
+            <p class="desc">{q.desc}</p>
+            <div class="meta">
+              <span>Tag: {q.tag}</span>
+              <span>Updated: 2026</span>
+            </div>
+          </article>
+        ))}
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 State / Action. Quest Board は試行錯誤のための掲示板です。</p>
+    </footer>
+  </body>
+</html>
+
