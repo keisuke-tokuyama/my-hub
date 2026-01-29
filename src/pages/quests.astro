@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 const siteTitle = "Quest Board";
 
 const activeQuests = [
@@ -28,14 +30,23 @@ const activeQuests = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{siteTitle} | State / Action</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZEG4N18HZ9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZEG4N18HZ9');
+    </script>
     <style>
       :root {
-        --bg: #ffffff;
-        --text: #1a1a1a;
-        --dim: #777;
-        --accent: #000;
-        --card: #fbfbfb;
-        --border: #ececec;
+        --bg: transparent;
+        --text: rgba(231, 234, 240, 0.92);
+        --dim: rgba(231, 234, 240, 0.62);
+        --accent: rgba(255, 255, 255, 0.85);
+        --card: rgba(255, 255, 255, 0.04);
+        --border: rgba(255, 255, 255, 0.10);
       }
       body {
         background: var(--bg);
@@ -55,7 +66,7 @@ const activeQuests = [
       h1 {
         font-size: 1.5rem;
         font-weight: normal;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid rgba(255,255,255,0.55);
         display: inline-block;
         margin: 0;
       }
@@ -67,7 +78,7 @@ const activeQuests = [
       .back {
         text-decoration: none;
         color: var(--text);
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid rgba(255,255,255,0.55);
         padding-bottom: 2px;
         white-space: nowrap;
         font-size: 0.9rem;
@@ -108,7 +119,7 @@ const activeQuests = [
         margin-bottom: 10px;
       }
       .qid {
-        color: #bbb;
+        color: rgba(231,234,240,0.45);
         font-size: 0.85rem;
         margin-right: 10px;
       }
@@ -120,15 +131,15 @@ const activeQuests = [
       }
       .badge {
         font-size: 0.7rem;
-        background: #f0f0f0;
-        border: 1px solid #e8e8e8;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.10);
         padding: 2px 8px;
         border-radius: 999px;
-        color: #333;
+        color: rgba(231,234,240,0.78);
       }
       .desc {
         margin: 0;
-        color: #555;
+        color: rgba(231,234,240,0.70);
         font-size: 0.9rem;
       }
       .meta {
@@ -136,16 +147,16 @@ const activeQuests = [
         display: flex;
         justify-content: space-between;
         align-items: center;
-        color: #999;
+        color: rgba(231,234,240,0.52);
         font-size: 0.8rem;
-        border-top: 1px dashed #e9e9e9;
+        border-top: 1px dashed rgba(255,255,255,0.12);
         padding-top: 10px;
       }
 
       footer {
         margin-top: 90px;
         font-size: 0.8rem;
-        border-top: 1px solid #eee;
+        border-top: 1px solid rgba(255,255,255,0.10);
         padding-top: 20px;
         color: var(--dim);
       }

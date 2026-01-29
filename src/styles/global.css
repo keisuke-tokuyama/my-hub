@@ -1,1 +1,91 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------
+   Site-wide mood: eerie / uncanny / subtle
+   - Deep navy gradient background
+   - Film grain overlay (SVG turbulence)
+   - Vignette corners
+   - Pale glowing hover color
+------------------------------------------------------------ */
+
+:root {
+  --bg-0: #05070a;
+  --bg-1: #0a0c12;
+  --text: rgba(231, 234, 240, 0.92);
+  --dim: rgba(231, 234, 240, 0.62);
+  --line: rgba(255, 255, 255, 0.10);
+  --hover: #e6ffcf; /* pale, slightly uncanny blue-green/lime */
+  --hover-glow: rgba(230, 255, 207, 0.32);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+/* Background lives on html to avoid stacking issues */
+html {
+  background: linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 100%);
+  color: var(--text);
+  position: relative;
+  isolation: isolate; /* keep blend modes contained behind content */
+}
+
+body {
+  background: transparent;
+  color: var(--text);
+  position: relative;
+  z-index: 2; /* always above html pseudo backgrounds */
+}
+
+/* Make default text rendering a bit softer */
+body {
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Film grain (procedural noise) */
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0; /* behind body content */
+  opacity: 0.035;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.9'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Vignette */
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1; /* below body, above grain */
+  background: radial-gradient(
+    120% 100% at 50% 45%,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.15) 45%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+/* Hover glow */
+a {
+  color: inherit;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  transition: color 180ms ease, text-shadow 180ms ease, border-color 180ms ease;
+}
+
+a:hover {
+  color: var(--hover) !important;
+  text-shadow:
+    0 0 10px rgba(230, 255, 207, 0.24),
+    0 0 22px var(--hover-glow);
+  text-decoration-color: rgba(230, 255, 207, 0.55);
+}

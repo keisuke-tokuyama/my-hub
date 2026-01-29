@@ -1,5 +1,7 @@
 ---
 // src/pages/gpa.astro
+import "../styles/global.css";
+
 const siteTitle = "GPA Planner";
 ---
 
@@ -8,17 +10,25 @@ const siteTitle = "GPA Planner";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{siteTitle} | State / Action</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZEG4N18HZ9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZEG4N18HZ9');
+    </script>
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen p-4 md:p-12 font-mono selection:bg-blue-100 selection:text-blue-700">
+<body class="bg-transparent text-slate-100 min-h-screen p-4 md:p-12 font-mono selection:bg-blue-100 selection:text-blue-700">
     <div class="max-w-4xl mx-auto space-y-12">
         
-        <header class="flex flex-col md:flex-row justify-between items-center py-6 border-b border-slate-200 mb-8">
+        <header class="flex flex-col md:flex-row justify-between items-center py-6 border-b border-white/10 mb-8">
             <div class="text-center md:text-left">
-                <h1 class="text-4xl font-black tracking-tighter text-slate-800 italic">GPA Planner</h1>
-                <p class="text-slate-400 font-bold uppercase tracking-widest text-[10px] mt-1">Reverse Engineering Your Grades</p>
+                <h1 class="text-4xl font-black tracking-tighter text-slate-100 italic">GPA Planner</h1>
+                <p class="text-slate-300 font-bold uppercase tracking-widest text-[10px] mt-1">Reverse Engineering Your Grades</p>
             </div>
-            <a href="/" class="mt-4 md:mt-0 px-6 py-2 bg-white border border-slate-200 rounded-full text-sm font-bold text-slate-600 hover:bg-slate-50 hover:border-blue-300 hover:text-blue-600 transition-all shadow-sm">
+            <a href="/" class="mt-4 md:mt-0 px-6 py-2 bg-white/10 backdrop-blur border border-white/15 rounded-full text-sm font-bold text-slate-100 hover:bg-white/15 transition-all shadow-sm">
                 ← ✍️ 作者のページへ
             </a>
         </header>
@@ -74,7 +84,7 @@ const siteTitle = "GPA Planner";
         <div id="resultArea" class="hidden space-y-12 pb-24 animate-in fade-in slide-in-from-bottom-10 duration-1000">
             <header class="flex items-center gap-6">
                 <span class="bg-blue-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center font-black text-xl rotate-6">3</span>
-                <h2 class="text-3xl font-black text-slate-800 tracking-tighter">シミュレーション結果</h2>
+                <h2 class="text-3xl font-black text-slate-100 tracking-tighter">シミュレーション結果</h2>
             </header>
             <div class="bg-gradient-to-br from-blue-600 via-indigo-700 to-slate-900 text-white p-12 rounded-[3rem] shadow-2xl shadow-blue-300 relative overflow-hidden group text-center">
                 <div class="relative z-10">
